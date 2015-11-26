@@ -1,0 +1,33 @@
+AddType application/x-httpd-php5 .php .html
+
+<IfModule mod_rewrite.c>
+	<IfModule mod_negotiation.c>
+    	Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    RewriteCond %{THE_REQUEST} ^.*/index.html [NC]
+    RewriteRule ^(.*)index.html$ http://recolife.com/$1 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} ^.*/info.html [NC]
+    RewriteRule ^(.*)info.html$ http://recolife.com/info [R=301,L]
+
+    RewriteCond %{THE_REQUEST} ^.*/sitemap.html [NC]
+    RewriteRule ^(.*)sitemap.html$ http://recolife.com/sitemap [R=301,L]
+
+    RewriteCond %{THE_REQUEST} ^.*/index.php [NC]
+    RewriteRule ^(.*)index.php$ http://recolife.com/$1 [R=301,L]
+
+    RewriteCond %{HTTP_HOST} ^(www\.recolife\.com)(:80)? [NC]
+    RewriteRule ^(.*) http://recolife.com/$1 [R=301,L]
+
+    # Redirect Trailing Slashes...
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+</IfModule>
